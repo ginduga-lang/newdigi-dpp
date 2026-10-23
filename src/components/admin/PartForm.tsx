@@ -41,7 +41,9 @@ export default function PartForm({
 
 
   useEffect(() => {
+
     if (editingPart) {
+
       reset({
         part_number: editingPart.part_number,
         part_name: editingPart.part_name,
@@ -51,45 +53,66 @@ export default function PartForm({
         carbon: editingPart.carbon,
         status: editingPart.status,
       });
+
     } else {
+
       reset();
+
     }
+
   }, [editingPart, reset]);
 
 
   async function onSubmit(data: PartFormData) {
+
     try {
+
+      const formattedData = {
+        ...data,
+        weight: Number(data.weight),
+        carbon: Number(data.carbon),
+      };
+
 
       if (editingPart) {
 
-        await updatePart(editingPart.id, data);
+        await updatePart(
+          editingPart.id,
+          formattedData
+        );
 
         alert("✅ Part updated successfully!");
 
+
       } else {
 
-        await createPart(data);
+        await createPart(formattedData);
 
         alert("✅ Part created successfully!");
 
       }
 
 
-reset();
-onSuccess();
+      reset();
+      onSuccess();
 
 
     } catch (error) {
 
-      console.error("Part Save Error:", error);
+      console.error(
+        "Part Save Error:",
+        error
+      );
 
       alert("❌ Failed to save part.");
 
     }
+
   }
 
 
   return (
+
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-6 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
@@ -150,7 +173,6 @@ onSuccess();
       />
 
 
-
       <div className="space-y-2">
 
         <label className="block text-sm font-medium text-slate-700">
@@ -175,13 +197,14 @@ onSuccess();
 
 
         {errors.status && (
+
           <p className="text-sm text-red-600">
             {errors.status.message}
           </p>
+
         )}
 
       </div>
-
 
 
       <div className="flex gap-4">
@@ -190,9 +213,10 @@ onSuccess();
           type="submit"
           className="flex-1 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
         >
-          {editingPart ? "Update Part" : "Save Part"}
-        </button>
 
+          {editingPart ? "Update Part" : "Save Part"}
+
+        </button>
 
 
         {editingPart && (
@@ -205,7 +229,9 @@ onSuccess();
             }}
             className="rounded-xl bg-slate-300 px-6 py-3 font-semibold text-slate-700 transition hover:bg-slate-400"
           >
+
             Cancel
+
           </button>
 
         )}
@@ -214,5 +240,7 @@ onSuccess();
 
 
     </form>
+
   );
+
 }

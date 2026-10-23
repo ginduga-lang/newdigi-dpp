@@ -2,12 +2,12 @@
   "name": "newdpp",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint"
-  },
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "eslint"
+},
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
     "@supabase/supabase-js": "^2.118.0",

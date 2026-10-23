@@ -1,9 +1,12 @@
 "use client";
 
 
+import { PartDocument } from "@/types/document";
+
 type Props = {
-  documents: any[];
+  documents: PartDocument[];
 };
+
 
 
 export default function DocumentsCard({

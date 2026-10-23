@@ -10,4 +10,4 @@ export const partSchema = z.object({
   status: z.enum(["Active", "Inactive"]),
 });
 
-export type PartFormData = z.infer<typeof partSchema>;
+export type PartFormData = z.input<typeof partSchema>;
