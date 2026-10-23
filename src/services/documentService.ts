@@ -52,6 +52,7 @@ export async function uploadDocument(
 
 
 
+
 export async function getPartDocuments(
   partId: string
 ) {
@@ -80,6 +81,9 @@ export async function getPartDocuments(
   }
 
 
-  return data;
+  return data.map((doc) => ({
+    ...doc,
+    file_url: doc.file_url,
+  }));
 
 }
